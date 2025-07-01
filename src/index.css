@@ -8,35 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* UAE Youth Platform - Black & Blue Theme */
+    --background: 220 20% 5%;  /* Deep black background */
+    --foreground: 210 40% 98%; /* Light text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 25% 8%;        /* Dark card backgrounds */
+    --card-foreground: 210 40% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 8%;
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;     /* Bright blue primary */
+    --primary-foreground: 220 20% 5%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 15% 15%;   /* Dark secondary */
+    --secondary-foreground: 210 40% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 12%;       /* Muted dark backgrounds */
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 217 91% 60%;      /* Blue accent */
+    --accent-foreground: 220 20% 5%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 20%;      /* Dark borders */
+    --input: 220 15% 15%;       /* Dark input backgrounds */
+    --ring: 217 91% 60%;        /* Blue ring */
 
-    --radius: 0.5rem;
+    /* Custom UAE Platform Colors */
+    --uae-gold: 45 100% 51%;    /* UAE gold accent */
+    --success: 142 76% 36%;     /* Green for success */
+    --warning: 32 95% 44%;      /* Orange for warnings */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 20% 5%) 0%, hsl(217 91% 15%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 25% 8%) 0%, hsl(220 20% 10%) 100%);
+    
+    /* Shadows */
+    --shadow-primary: 0 10px 30px -5px hsl(217 91% 60% / 0.3);
+    --shadow-card: 0 8px 25px -5px hsl(220 20% 0% / 0.4);
+    --shadow-elegant: 0 20px 40px -10px hsl(220 20% 0% / 0.5);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
