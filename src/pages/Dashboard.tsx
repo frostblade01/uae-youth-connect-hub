@@ -17,11 +17,11 @@ const Dashboard = () => {
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-    type: '' as string,
+    type: 'all' as string,
     subject: '',
-    price: '' as string,
-    audience: '' as string,
-    format: '' as string
+    price: 'all' as string,
+    audience: 'all' as string,
+    format: 'all' as string
   });
 
   const fetchOpportunities = async () => {
@@ -32,10 +32,10 @@ const Dashboard = () => {
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
 
-      if (filters.type) query = query.eq('type', filters.type as any);
-      if (filters.price) query = query.eq('price', filters.price as any);
-      if (filters.audience) query = query.eq('audience', filters.audience as any);
-      if (filters.format) query = query.eq('format', filters.format as any);
+      if (filters.type && filters.type !== 'all') query = query.eq('type', filters.type as any);
+      if (filters.price && filters.price !== 'all') query = query.eq('price', filters.price as any);
+      if (filters.audience && filters.audience !== 'all') query = query.eq('audience', filters.audience as any);
+      if (filters.format && filters.format !== 'all') query = query.eq('format', filters.format as any);
       if (filters.subject) query = query.ilike('subject', `%${filters.subject}%`);
 
       const { data, error } = await query;
@@ -103,7 +103,7 @@ const Dashboard = () => {
                       <SelectValue placeholder="All Types" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Types</SelectItem>
+                      <SelectItem value="all">All Types</SelectItem>
                       <SelectItem value="mun">MUN</SelectItem>
                       <SelectItem value="internship">Internship</SelectItem>
                       <SelectItem value="volunteering">Volunteering</SelectItem>
@@ -130,7 +130,7 @@ const Dashboard = () => {
                       <SelectValue placeholder="All Prices" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Prices</SelectItem>
+                      <SelectItem value="all">All Prices</SelectItem>
                       <SelectItem value="free">Free</SelectItem>
                       <SelectItem value="paid">Paid</SelectItem>
                     </SelectContent>
@@ -144,7 +144,7 @@ const Dashboard = () => {
                       <SelectValue placeholder="All Audiences" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Audiences</SelectItem>
+                      <SelectItem value="all">All Audiences</SelectItem>
                       <SelectItem value="all">All Nationalities</SelectItem>
                       <SelectItem value="emiratis">UAE Nationals</SelectItem>
                     </SelectContent>
@@ -158,7 +158,7 @@ const Dashboard = () => {
                       <SelectValue placeholder="All Formats" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Formats</SelectItem>
+                      <SelectItem value="all">All Formats</SelectItem>
                       <SelectItem value="online">Online</SelectItem>
                       <SelectItem value="offline">Offline</SelectItem>
                     </SelectContent>
