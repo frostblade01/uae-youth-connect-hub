@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
-import { Plus, Filter, Bookmark } from 'lucide-react';
+import { Filter, Bookmark } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import OpportunityCard from '@/components/OpportunityCard';
+import SubmitOpportunityModal from '@/components/SubmitOpportunityModal';
 import Navbar from '@/components/Navbar';
 import { toast } from '@/hooks/use-toast';
 
@@ -16,11 +17,11 @@ const Dashboard = () => {
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-    type: '',
+    type: '' as string,
     subject: '',
-    price: '',
-    audience: '',
-    format: ''
+    price: '' as string,
+    audience: '' as string,
+    format: '' as string
   });
 
   const fetchOpportunities = async () => {
@@ -31,10 +32,10 @@ const Dashboard = () => {
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
 
-      if (filters.type) query = query.eq('type', filters.type);
-      if (filters.price) query = query.eq('price', filters.price);
-      if (filters.audience) query = query.eq('audience', filters.audience);
-      if (filters.format) query = query.eq('format', filters.format);
+      if (filters.type) query = query.eq('type', filters.type as any);
+      if (filters.price) query = query.eq('price', filters.price as any);
+      if (filters.audience) query = query.eq('audience', filters.audience as any);
+      if (filters.format) query = query.eq('format', filters.format as any);
       if (filters.subject) query = query.ilike('subject', `%${filters.subject}%`);
 
       const { data, error } = await query;
@@ -82,10 +83,7 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-foreground">Discover Opportunities</h1>
-          <Button className="bg-gradient-primary shadow-primary">
-            <Plus className="h-4 w-4 mr-2" />
-            Submit Opportunity
-          </Button>
+          <SubmitOpportunityModal onSubmitted={fetchOpportunities} />
         </div>
 
         <div className="grid lg:grid-cols-4 gap-8">
